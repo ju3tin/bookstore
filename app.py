@@ -55,14 +55,62 @@ class ReusableForm(Form):
     surname = TextField('Surname:', validators=[validators.required()])
     email = TextField('Email:', validators=[validators.required(), validators.Length(min=6, max=35)])
     password = TextField('Password:', validators=[validators.required(), validators.Length(min=3, max=35)])
+
+    @app.route("/register", methods=['GET', 'POST'])
+    def register():
+        form = ReusableForm(request.form)
     
-    @app.errorhandler(404)
-    def page_not_found(error):
-        return render_template('base1.html', error_code='404'), 404
+        print (form.errors)
+        if request.method == 'POST':
+            users = conn[DBS_NAME].users
+            excisting_user = users.find_one({'email' : request.form['email']})
+            name=request.form['name']
+            surname=request.form['surname']
+            username=request.form['username']
+            password=request.form['password']
+            email=request.form['email']
+            print (name, " ", surname, " ", email, " ", password)
+
+            if excisting_user is None:
+                
+                users.insert({'firstname' : name, 'surname' : surname,'email' : email, 'username' : username, 'password' : password})
+                
+                
     
-    @app.errorhandler(500)
-    def special_exception_handler(error):
-        return render_template('500.html', error_code='500'), 500
+        if form.validate():
+        # Save the comment here.
+            flash('Thanks for registration ' + name)
+        else:
+            flash('Error: All the form fields are required. ')
+    
+        return render_template('register.html', form=form)
+	
+	
+    @app.route('/login', methods=['GET', 'POST'])
+    def login():
+        form = ReusableForm(request.form)
+        print (form.errors)
+        if request.method == 'POST':
+            users = conn[DBS_NAME].users
+            username=request.form['username']
+            password=request.form['password']
+            print (username, " ", password)
+            login_user = users.find_one({'username' : username})
+          #  login_user = users.find_one({'username' : request.form['username']})
+
+
+            if login_user:
+                if (password) == login_user['password']:
+                    session['username'] = request.form['username']
+                    return redirect(url_for('browse'))
+                    return 'Invalid username/password combination'
+
+        #return 'Invalid username/password combination'
+
+        return render_template("login.html", form=form)
+    
+    
+    
 
 
 
@@ -146,7 +194,8 @@ def action3 ():
 @app.route("/search", methods=['GET'])
 def search():
 	#Searching a Task with various references
-
+	title="Search"
+	heading="Search"
 	key=request.values.get("key")
 	refer=request.values.get("refer")
 	if(key=="_id"):
@@ -154,6 +203,17 @@ def search():
 	else:
 		todos_l = todos.find({refer:key})
 	return render_template('searchlist.html',todos=todos_l,t=title,h=heading)
+
+@app.errorhandler(404)
+def page_not_found(error):
+	title="error"
+	return render_template('404.html', error_code='404',t=title), 404
+
+@app.errorhandler(500)
+def special_exception_handler(error):
+	title="error 505"
+	return render_template('500.html', error_code='500', t=title), 500
+    
 
 if __name__ == "__main__":
 

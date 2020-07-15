@@ -22,7 +22,11 @@
      <link rel="stylesheet" href="/static/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
     
 
-    <title>MS3</title>
+    <title>{% if t %}
+         {{ t }}
+      {% else %}
+         dude1
+      {% endif %}</title>
 </head>
 <body>
     <header>
