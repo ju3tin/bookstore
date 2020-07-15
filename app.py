@@ -58,11 +58,10 @@ class ReusableForm(Form):
 
     @app.route("/listings", methods=['GET', 'POST'])
     def listings():
-        form = ReusableForm(request.form)
-    
+	
         
     
-        return render_template('listings.html', form=form)
+        return render_template('listings.html')
 	
     @app.route("/register", methods=['GET', 'POST'])
     def register():
