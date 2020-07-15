@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Link for custom css -->
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <!-- Link for custom css materialize override-->
+     <link rel="stylesheet" href="/static/css/materialize_override.css"> 
+
+    <!-- Fontawesome -->
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    
+
+    <title>MS3</title>
+</head>
+<body>
+    <header>
+    <!-- Navigation -->
+    <!-- Navbar -->
+ 
+ <div class="mynav">
+  <nav class="nav-fixed">
+    <div class="nav-wrapper z-depth-5">
+      <a href="/index" class="brand-logo">Book Shelf</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down pad">
+        <li><a href="/index">Home</a></li>
+        <li><a href="/book_club">Book Club</a></li>
+        <li><a href="/browse">Browse</a></li>
+
+        
+        <li><a href="/profile/as">Account</a></li>
+        <li><a href="/add_item">Add Item</a></li>
+        <li><a href="/logout">Log out</a></li>
+        
+      </ul>
+    </div>
+  </nav>
+
+</div>
+
+<ul class="sidenav" id="mobile-demo">
+   <li><a href="/index">Home</a></li>
+        <li><a href="/book_club">Book Club</a></li>
+        <li><a href="/browse">Browse</a></li>
+
+        
+        <li><a href="/profile/as">Account</a></li>
+        <li><a href="/add_item">Add Item</a></li>
+        <li><a href="/logout">Log out</a></li>
+        
+  </ul>
+ 
+<!-- End Navbar -->
+    <!-- End Navigation -->
+    </header>
+
+
+    <!-- Main Content -->   
+    <main class="container col s12">
+    
+
+
+<section class="browse-header top-club">
+     <img class="browse_img responsive-img" src="https://images.pexels.com/photos/3769697/pexels-photo-3769697.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260" alt="browse page image" style="width:1280px;height:350px;" />
+</section>
+
+<section>
+    <h4 class="title">Listing Details:  The Expanse - Leviathan Wakes</h4>
+    <hr>
+</section>
+ <!-- Messages -->
+    <!-- Flash Messages -->
+<div id="alerts" class="container messages">
+    <div class="row justify-content-around">
+        <div id="messages">
+            
+            
+            
+        </div>
+    </div>
+</div>
+<!-- End Flash Messages -->
+    <!-- End Messages -->
+
+<div class="container crd-cont z-depth-2 top-club bottom">
+    <div class="card-img bottom">
+        <img src="https://m.media-amazon.com/images/I/51HgrMkErvL.jpg">
+    </div>  
+
+    <div class="content ">
+    <hr class="bottom">
+        <p > <span class="sml">Added By:</span> Cara</p>
+        <p > <span class="sml">Read Time:</span> 15+ Hours</p>
+        <p> <span class="sml">Added on:</span> 11 June 2020</p>
+        <p > <span class="sml">Rating:</span> 5 Stars</p>
+        <p class="last"> <span class="sml">Description: </span>Humanity has colonised the solar system - Mars, the Moon, the Asteroid Belt and beyond - but the stars are still out of our reach.  Jim Holden is an officer on an ice miner making runs from the rings of Saturn to the mining stations of the Belt. When he and his crew discover a derelict ship called the Scopuli, they suddenly find themselves in possession of a deadly secret. A secret that someone is willing to kill for, and on an unimaginable scale. War is coming to the system, unless Jim can find</p>
+        <div class="">
+         
+        <div class="meet-btn btn-size">
+        <a class="btn waves-effect waves-light standard-btn icon-right btn-spc btn-color spacer" href="/get_update_listing/5edc0d7520beca0b6461e638"><i class="material-icons right">send</i>Edit </a>
+
+        <!-- Modal Trigger -->
+       
+        <a class="btn waves-effect waves-light standard-btn icon-right btn-spc btn-red modal-trigger spacer" href="#modal1">Delete &nbsp;<i class="fa fa-times-circle"></i></a>
+
+         <a class="btn waves-effect waves-light standard-btn icon-right btn-spc home spacer" href="/browse"><i class="material-icons right">send</i>Back </a>
+
+       
+        </div>
+      
+    
+    </div>
+
+</div>
+
+
+
+</div>
+
+<!-- Modal Structure -->
+        <div id="modal1" class="modal s12">
+            <div class="modal-content">
+            <h4>Confirm Deletion</h4>
+            
+                <hr><br>  
+                <!-- Give your meeting a name-->
+                <div class="row">
+                    <form class="col s12"  >
+                        <div class="row">
+                         <p> Please Confirm you wish to delete the selected listing: The Expanse - Leviathan Wakes</p>
+                        <!-- Delete meeting-->
+                            <div class="col s6">
+                                <a class="btn waves-effect waves-light standard-btn icon-right btn-spc btn-red" href="/remove_listing/5edc0d7520beca0b6461e638">Delete Listing&nbsp;<i class="fa fa-times-circle"></i></a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                    
+            </div>
+            <div class="modal-footer">
+            <a href="#!" class="modal-close waves-effect waves-green btn-flat">Close</a>
+            </div>
+       </div>  
+
+    
+    </main>
+    <!-- End Main Content --> 
+
+    <!-- Footer -->
+    <footer>
+    <!-- Footer -->
+<footer class="page-footer">
+    <div class="container footer-spc">
+        <div class="row center-align">
+            <div class="col s8 m6 l4 foot-spc ">
+                <h5 class="white-text">Book Shelf</h5>
+                <hr class="footer-hr">
+                    <p class="grey-text text-lighten-4 left-align book">Welcome to Book Shelf. An online community for book lovers, enthusiasts and anyone the enjoys a good read.</p>
+                    <p class="grey-text text-lighten-4 left-align book"> This site encourages everyone to share their opinions in a respectful manner.</p>
+            </div>
+            <div class="col s8 m6 l3 foot-spc nav">
+                <h5 class="white-text">Navigation</h5>
+                <hr class="footer-hr">
+                <ul>
+                    <li><a href="/index" class="ft-nav">Home</a></li>
+                    <li><a href="/book_club" class="ft-nav">Book Club</a></li>
+                    <li><a href="/browse" class="ft-nav">Browse</a></li>
+
+                    
+
+                    <li>
+                    <a href="/profile/as" class=" ft-nav">Account</a>
+                    </li>
+
+                    <li>
+                    <a href="/add_item" class="ft-nav">Add Item</a>
+                    </li>
+
+                    <li>
+                    <a href="/logout" class=" ft-nav">Log out</a>
+                    </li>
+
+                    
+                </ul>
+            </div>
+            <div class="col s8 m6 l3 foot-spc soc">
+            <h5 class="white-text">Social</h5>
+            <hr class="footer-hr">
+            
+            <ul class="social">
+                <li class="li1">
+                    <a href="#"><i class="fab fa-linkedin" title="Sunny-Hebbar" aria-hidden="true"></i></a>
+                </li>
+                <li class="li">
+                <a href="https://github.com/Pysched/MS3-DM"><i class="fab fa-github" title="Sunny-Hebbar" aria-hidden="true"></i></a>
+                </li>
+                <li class="li"> 
+                <a href="#"><i class="fab fa-slack " title="Sunny-Hebbar" aria-hidden="true"></i></a>
+                </li>
+                <li class="li4">
+                <a href="#"><i class="fab fa-youtube" title="Sunny-Hebbar" aria-hidden="true"></i></a>
+                </li>
+            </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+        © 2020 Copyright Book Shelf
+         <p class="grey-text text-lighten-4 right" href="#!">For Educational Purposes</p>
+        </div>
+    </div>
+</footer>
+<!-- End Footer -->
+    </footer>
+    <!-- End footer -->
+
+
+
+    <!-- JQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+  <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+            
+   
+
+    <!-- Custom JavaScript -->
+    <script src="/static/js/main.js"></script>
+
+</body>
+</html>

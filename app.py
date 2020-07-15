@@ -56,6 +56,14 @@ class ReusableForm(Form):
     email = TextField('Email:', validators=[validators.required(), validators.Length(min=6, max=35)])
     password = TextField('Password:', validators=[validators.required(), validators.Length(min=3, max=35)])
 
+    @app.route("/listings", methods=['GET', 'POST'])
+    def listings():
+        form = ReusableForm(request.form)
+    
+        
+    
+        return render_template('listings.html', form=form)
+	
     @app.route("/register", methods=['GET', 'POST'])
     def register():
         form = ReusableForm(request.form)
@@ -108,7 +116,12 @@ class ReusableForm(Form):
         #return 'Invalid username/password combination'
 
         return render_template("login.html", form=form)
-    
+		
+
+		
+@app.route('/book_club')
+def book_club():
+	return render_template('book_club.html')
     
     
 
