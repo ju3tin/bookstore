@@ -7,9 +7,9 @@ app = Flask(__name__)
 title = "TODO sample application with Flask and MongoDB"
 heading = "TODO Reminder with Flask and MongoDB"
 
-client = MongoClient("mongodb://127.0.0.1:27017") #host uri
-db = client.mymongodb    #Select the database
-todos = db.todo #Select the collection name
+client = MongoClient("mongodb+srv://12345:dude123@cluster0.x5l6q.mongodb.net") #host uri
+db = client.books   #Select the database
+todos = db.bookdetails1 #Select the collection name
 
 def redirect_url():
     return request.args.get('next') or \
@@ -21,7 +21,7 @@ def lists ():
 	#Display the all Tasks
 	todos_l = todos.find()
 	a1="active"
-	return render_template('index.html',a1=a1,todos=todos_l,t=title,h=heading)
+	return render_template('base1.html',a1=a1,todos=todos_l,t=title,h=heading)
 
 @app.route("/")
 @app.route("/uncompleted")
