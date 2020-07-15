@@ -1,15 +1,70 @@
-from flask import Flask, render_template,request,redirect,url_for # For flask implementation
-from bson import ObjectId # For ObjectId to work
-from pymongo import MongoClient
+import pymongo
 import os
+from bson.json_util import dumps
+from bson.objectid import ObjectId
+from flask import Flask, render_template, url_for, flash, redirect, request, abort, session, jsonify, json
+from flask_wtf import FlaskForm
+from wtforms import Form, TextField, TextAreaField, validators, StringField, SubmitField, PasswordField
+from wtforms.validators import DataRequired
+from forms import RegistrationForm, LoginForm
+import bcrypt
 
+MONGO_URI = os.getenv("MONGO_URI")
+DBS_NAME = "books"
+COLLECTION_NAME = "bookdetails"
+
+"""
+ This is to make a CSV file.
+"""
+try:
+    f=open("csv.csv", "x")
+except:
+    print("already there")
+    f=open("csv.csv", "w")
+
+def mongo_connect(url):
+    try:
+        conn = pymongo.MongoClient("mongodb+srv://12345:dude123@cluster0.x5l6q.mongodb.net")
+        print("Mongo is connected!")
+        return conn
+    except pymongo.errors.ConnectionFailure as e:
+        print("Could not connect to MongoDB: %s") % e
+
+
+conn = mongo_connect(MONGO_URI)
+
+coll = conn[DBS_NAME][COLLECTION_NAME]
+
+todos = conn[DBS_NAME][COLLECTION_NAME]
+
+documents = coll.find()
+
+for doc in documents: 
+    print(doc, file=f)
+
+
+# App config.
+DEBUG = True
 app = Flask(__name__)
-title = "TODO sample application with Flask and MongoDB"
-heading = "TODO Reminder with Flask and MongoDB"
+app.config.from_object(__name__)
+app.config['SECRET_KEY'] = '7d441f27d441f27567d441f2b6176a'
 
-client = MongoClient("mongodb+srv://12345:dude123@cluster0.x5l6q.mongodb.net") #host uri
-db = client.books   #Select the database
-todos = db.bookdetails1 #Select the collection name
+class ReusableForm(Form):
+    name = TextField('Name:', validators=[validators.required()])
+    username = TextField('Userame:', validators=[validators.required()])
+    surname = TextField('Surname:', validators=[validators.required()])
+    email = TextField('Email:', validators=[validators.required(), validators.Length(min=6, max=35)])
+    password = TextField('Password:', validators=[validators.required(), validators.Length(min=3, max=35)])
+    
+    @app.errorhandler(404)
+    def page_not_found(error):
+        return render_template('base1.html', error_code='404'), 404
+    
+    @app.errorhandler(500)
+    def special_exception_handler(error):
+        return render_template('500.html', error_code='500'), 500
+
+
 
 def redirect_url():
     return request.args.get('next') or \
@@ -21,6 +76,8 @@ def lists ():
 	#Display the all Tasks
 	todos_l = todos.find()
 	a1="active"
+	title="dude"
+	heading="dude"
 	return render_template('base1.html',a1=a1,todos=todos_l,t=title,h=heading)
 
 @app.route("/")
